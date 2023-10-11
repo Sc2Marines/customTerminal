@@ -1,0 +1,1 @@
+oh-my-posh init pwsh --config C:\Users\alexa\Documents\PowerShell\Scripts\chtheme\themes\zash.omp.json | Invoke-Expression
