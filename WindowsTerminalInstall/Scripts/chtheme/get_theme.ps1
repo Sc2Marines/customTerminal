@@ -16,8 +16,7 @@ else {
 
 #get the actual font
 $utilisateur = $env:USERNAME
-# $cheminTerminal = (Get-AppxPackage -Name "Microsoft.WindowsTerminal").InstallLocation
-$programFiles = [Environment]::GetFolderPath("ProgramFiles")
+$programFiles = "C:\Program Files"
 $terminalPath = Get-ChildItem -Path "$programFiles\WindowsApps" -Filter "Microsoft.WindowsTerminal*" -Directory | Select-Object -First 1
 $cheminTerminal = $terminalPath.FullName
 $cheminTerminal = $cheminTerminal.Split("_")[-1]
