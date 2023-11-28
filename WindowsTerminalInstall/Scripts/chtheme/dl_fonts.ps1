@@ -10,16 +10,16 @@ else {
 
 }
 
-$user = [Environment]::UserName
+# $user = [Environment]::UserName
 
-# for each font installed in "C:\Windows\Fonts" check if is installed in "C:\Users\$user\AppData\Local\Microsoft\Windows\Fonts"
+# for each font installed in "C:\Windows\Fonts"
 $fonts = Get-ChildItem -Path "C:\Windows\Fonts" -Filter "*.ttf" -Recurse
 foreach ($font in $fonts) {
-    $destination = "C:\Users\$user\AppData\Local\Microsoft\Windows\Fonts\$($font.Name)"
+    $destination = "C:\Windows\Fonts\$($font.Name)"
     if (!(Test-Path $destination)) {
-        # if the font is not installed in "C:\Users\$user\AppData\Local\Microsoft\Windows\Fonts" install it
+        # if the font is not installed in "C:\Windows\Fonts" install it
         Copy-Item -Path $font.FullName -Destination $destination
     }
 }
 
-Write-Host "Font installed (and moved to local user)" -ForegroundColor Green
+Write-Host "Font installed" -ForegroundColor Green

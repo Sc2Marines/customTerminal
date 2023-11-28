@@ -4,7 +4,7 @@ Write-Warning $argument
 $utilisateur = $env:USERNAME
 
 # Récupérer le chemin du package Windows Terminal
-$programFiles = [Environment]::GetFolderPath("ProgramFiles")
+$programFiles = "C:\Program Files"
 $terminalPath = Get-ChildItem -Path "$programFiles\WindowsApps" -Filter "Microsoft.WindowsTerminal*" -Directory | Select-Object -First 1
 $cheminTerminal = $terminalPath.FullName
 #split the last _ 

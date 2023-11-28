@@ -2,7 +2,6 @@
 [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Drawing")
 $fonts = (New-Object System.Drawing.Text.InstalledFontCollection).Families
 
-
 #array to store the tags [Nerd Font, NF, Nerd, Nerd-Font, NerdFont, NFP, NFM]
 $fonts_array = @("Nerd Font", "NF", "Nerd", "Nerd-Font", "NerdFont", "NFP", "NFM")
 
@@ -16,7 +15,6 @@ foreach ($font in $fonts) {
             #pick the first word (before the first space)
 
             $font_name = $font.Name.Split(" ")[0]
-
             #add the font to the array
             if ($font_families.ContainsKey($font_name)) {
                 $font_families[$font_name] += @($font.Name)
