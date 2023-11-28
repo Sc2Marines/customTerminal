@@ -70,15 +70,27 @@ function download_theme {
             if ($answer -eq "y") {
                 # Download the theme
                 $url = "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/$name.omp.json"
-                Invoke-WebRequest -Uri $url -OutFile "$theme_folder\$name.omp.json"
-                Write-Host "The theme '$name' has been downloaded." -ForegroundColor Green
+                try {
+                    Invoke-WebRequest -Uri $url -OutFile "$theme_folder\$name.omp.json"
+                    Write-Host "The theme '$name' has been downloaded." -ForegroundColor Green
+                }
+                catch {
+                    Write-Host "Theme not found." -ForegroundColor Red
+                }
+
             }
         }
         else {
             # Download the theme
             $url = "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/$name.omp.json"
-            Invoke-WebRequest -Uri $url -OutFile "$theme_folder\$name.omp.json"
-            Write-Host "The theme '$name' has been downloaded." -ForegroundColor Green
+
+            try {
+                $response = Invoke-WebRequest -Uri $url -ErrorAction Stop
+                $response.Content | Out-File "$theme_folder\$name.omp.json"
+                Write-Host "The theme '$name' has been downloaded." -ForegroundColor Green
+            } catch {
+                Write-Host "Theme not found." -ForegroundColor Red
+            }
         }
     }
     else {
